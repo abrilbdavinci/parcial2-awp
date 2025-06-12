@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #101111;
+    line-height: 1.6;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+h1{
+    font-size: 0;
+}
+
+header {
+    padding: 10px 150px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Soporte Safari */
+    background-color: rgba(25, 27, 27, 0.507); /* Fondo semitransparente */
+}
+
+header .logo {
+    height: 40px;
+}
+
+#logo{
+    width: 80px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    justify-content: flex-end
+}
+
+nav ul li a {
+    color: #e7f3fa;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+footer {
+    background-color: #030505;
+    color: #e7f3fa;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+
+main {
+    text-align: center;
+    padding: 150px 0;
+    max-width: 1720px;
+    margin: 0 auto;
+}
+
+i{
+    margin-right: 7px;
+}
+
+
+#buscador {
+    text-align: center;
+    width: 55%;
+    padding: 0.5rem 0.3rem;
+    border: 1px solid #e7f3fa;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+
+
+#peliculas{
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 2rem;
+    margin: 1rem;
+    background-color: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 8px #79808529;
+    width: 350px;
+    text-align: center;
+    display: inline-block;
+    border: 0;
+    border-radius: 10px;
+}
+
+.card img {
+    border-radius: 7px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 15px 0 0;
+    font-size: 1.6rem;
+    color: #e7f3fa;
+    padding: 0 10px;
+    text-align: left;
+    font-weight: 500;
+}
+.card-footer button:first-child{
+    color: #e7f3fa;
+    border: 1px solid #E40080;
+    background-color: transparent;
+}
+div.eliminar-favoritos button:first-child{
+    width: 100%;
+}
+.card-footer button:first-child:hover{
+    background-color: #E40080;
+}
+.card-footer button:nth-child(2){
+    color: #e7f3fa;
+    background: #E40080;
+    background: linear-gradient(90deg, rgba(228, 0, 128, 1) 9%, rgba(0, 152, 179, 1) 96%);
+}
+.card-footer button {
+    margin: 0;
+    color: #e7f3fa;
+    padding: 13px 14px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+}
+
+.card-footer{
+    justify-content: space-between;
+    padding: 0.4rem 0.7rem 0;
+    display: flex;
+}
+.card-footer i{
+    margin-right: 3px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.modal-content {
+    color: #e7f3fa;
+    background-color: #030505;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    max-height: 650px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.modal.mostrar {
+    display: flex;
+}
+
+
+.modal-content img {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px auto;
+}
+
+.modal-body{
+    max-height: 500px;
+    overflow: auto;
+}
+
+.summary {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.modal-content button {
+    background-color: #E40080;
+    color: #e7f3fa;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.card button{
+    margin: 5px 0 15px 0;
+    background-color: grey;
+    color: #e7f3fa;
+    padding: 13px 14px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+
+.error {
+    color: rgb(255, 24, 24);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#favoritos{
+    text-align: center;
+}
+
+footer p{
+    margin-bottom: 0;
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .card-footer button {
+        width: 40%;
+    }
+
+    .card-footer .btn-text {
+        display: none;
+    }
+
+    header {
+        padding: 10px 30px !important;
+    }
+
+
+
+}
+

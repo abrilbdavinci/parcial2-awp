@@ -1,0 +1,12 @@
+Escuela de Arte Multimedial Da Vinci
+====
+CARRERA: Diseño y Programación Web
+MATERIA: Aplicaciones Web Progresivas
+TRABAJO PRÁCTICO: Examen Parcial 2
+PROFESOR: Carlos Ferrer
+ALUMNO: Martina Alvarez, Abril Barrientos, Martina Giacomini
+CUATRIMESTRE: 3
+COMISIÓN: DWM3AP
+TURNO: Mañana
+FECHA DE ENTREGA: 30/06/2025
+URL DEL SITIO:
