@@ -27,7 +27,7 @@ function mostrarShows(data) {
 
     const shows = data && data[0]?.show ? data.map(item => item.show) : data || [];
 
-    if (!Array.isArray(shows)) {
+    if (!(shows)) {
         contenedorShows.innerHTML = `<p class="text-danger">No se encontró el título buscado. Intentar con otro título.</p>`;
         return;
     }

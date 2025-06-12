@@ -25,8 +25,9 @@ header {
     align-items: center;
     min-height: 100px;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Soporte Safari */
-    background-color: rgba(25, 27, 27, 0.507); /* Fondo semitransparente */
+    -webkit-backdrop-filter: blur(10px); 
+    background-color: rgba(25, 27, 27, 0.507); 
+    box-shadow: 0 4px 8px #18181ab0;
 }
 
 header .logo {
@@ -45,21 +46,30 @@ nav ul {
 nav ul li {
     display: flex;
     align-items: center;
-    margin: 0 20px;
+    margin: 20px 10px;
     justify-content: flex-end
 }
 
 nav ul li a {
+    text-align: center;
     color: #e7f3fa;
     text-decoration: none;
     font-weight: bold;
+}
+
+nav .container-fluid{
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 
 
 
 footer {
-    background-color: #030505;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    background-color: rgba(20, 24, 24, 0.788); 
+    box-shadow: 0 4px 8px #18181ade;
     color: #e7f3fa;
     text-align: center;
     padding: 10px;
@@ -69,10 +79,46 @@ footer {
     font-size: 1em;
 }
 
+.logo-installBtn{
+    align-items: center;
+    display: flex;
+    gap: 1.5em;
+}
+
+.btn-instalar {
+    background-color: #E40080; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-instalar i{
+    font-size: 20px;
+}
+
+.btn-instalar p{
+    margin: 0;
+}
+
+.btn-instalar:hover {
+    background-color: #1565c0;
+}
+
+.btn-instalar:active {
+    transform: scale(0.98);
+}
+
 
 main {
     text-align: center;
-    padding: 150px 0;
+    padding: 130px 0;
     max-width: 1720px;
     margin: 0 auto;
 }
@@ -83,13 +129,20 @@ i{
 
 
 #buscador {
+    margin: 20px auto;
     text-align: center;
-    width: 55%;
-    padding: 0.5rem 0.3rem;
+    width: 70%;
+    padding: 0.8rem 0.3rem;
     border: 1px solid #e7f3fa;
     border-radius: 50px;
     font-size: 16px;
 }
+
+.buscador-container {
+    position: relative;
+    width: 300px; /* o 100% si quieres que sea responsive */
+}
+
 
 
 
@@ -132,7 +185,8 @@ i{
     background-color: transparent;
 }
 div.eliminar-favoritos button:first-child{
-    width: 100%;
+    width: 70%;
+    margin: 0 auto 10px auto;
 }
 .card-footer button:first-child:hover{
     background-color: #E40080;
@@ -145,7 +199,7 @@ div.eliminar-favoritos button:first-child{
 .card-footer button {
     margin: 0;
     color: #e7f3fa;
-    padding: 13px 14px;
+    padding: 7px 12px;
     border: none;
     font-size: 16px;
     cursor: pointer;
@@ -250,7 +304,7 @@ footer p{
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .card {
         max-width: 100%;
         margin: 10px 0;
@@ -265,10 +319,27 @@ footer p{
     }
 
     header {
-        padding: 10px 30px !important;
+        padding: 20px 50px !important;
+        align-items: flex-start !important;
     }
 
+    .navbar {
+        margin: auto 0;
+    }
 
-
+    #navbarNav {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-5px);
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+    
+    #navbarNav.show {
+        max-height: 300px; /* lo suficiente para mostrar los items */
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
 }
 
