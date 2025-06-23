@@ -57,6 +57,10 @@ header .logo {
     background-color: green;
 }
 
+.offline{
+    background-color: red !important;
+}
+
 nav ul {
     list-style: none;
     display: flex;

@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('sw.js')
             .then(function(registration){
                 console.log('el registro del SW fue exitoso. Tiene este alcance; ', registration.scope)
             }).catch(function(error){
@@ -64,6 +64,33 @@ if(window.Notification && Notification.permission !== 'denied'){
 
     
 }
+
+/* status en linea */
+
+(()=>{
+    let statusMenu = document.querySelector('#status-app');
+    let statusPwa = document.querySelector('meta[name=theme-color]');
+
+
+    const state = () =>{
+        if(navigator.online){
+            statusMenu.classList.remove('offline')
+            console.log("hay")
+        }else{
+            console.log(" No hay")
+            statusMenu.classList.add('offline');
+            statusPwa.setAttribute('content', '#E40080')
+        }
+    }
+
+    if(navigator.online){
+        state()
+    }
+
+    window.addEventListener("online", state);
+    window.addEventListener("offlne", state)
+
+})();
 
 
 
