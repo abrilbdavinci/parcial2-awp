@@ -38,6 +38,25 @@ header .logo {
     width: 80px;
 }
 
+.circulito {
+    display: flex;
+    color: white;
+    align-items: center;
+    margin: auto 0 !important;
+}
+
+.circulito p {
+    margin-right: 0.4rem;
+    margin-bottom: 0;
+}
+
+#status-app {
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background-color: green;
+}
+
 nav ul {
     list-style: none;
     display: flex;

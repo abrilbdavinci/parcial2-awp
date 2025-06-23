@@ -57,5 +57,29 @@ self.addEventListener('fetch', (event) => {
     );
 });
 
+(()=>{
+    let statusMenu = document.querySelector('#status-app');
+    let statusPwa = document.querySelector('meta[name=theme-color]');
+
+
+    const state = () =>{
+        if(navigator.online){
+            statusMenu.classList.remove('offline')
+            console.log("hay")
+        }else{
+            console.log(" No hay")
+            statusMenu.classList.add('offline');
+            statusPwa.setAttribute('content', '#E40080')
+        }
+    }
+
+    if(navigator.online){
+        state()
+    }
+
+    window.addEventListener("online", state);
+    window.addEventListener("offlne", state)
+
+})();
 
 

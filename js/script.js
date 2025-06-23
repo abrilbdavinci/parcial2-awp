@@ -54,8 +54,8 @@ if(window.Notification && Notification.permission !== 'denied'){
 
     //crear notificacion
     //dos parametros(tituloNotificacion, objetoJS para el cuerpo de la notifiacion)
-    new Notification("Titulo noti", {
-        body: "body de la not",
+    new Notification("Busca SeriesTV", {
+        body: "Encontrar tus series favoritas ahora es más fácil!!",
         icon: "favicon/android-icon-144x144.png",//como script se ejecuta desde index.html, no se usa ../
         image: "img/img-notification-push.png",
         badge: "favicon/android-icon-144x144.png"
