@@ -30,12 +30,13 @@ header {
     box-shadow: 0 4px 8px #18181ab0;
 }
 
-header .logo {
-    height: 40px;
-}
-
-#logo{
-    width: 80px;
+header div a#logo {
+    height: 100px;
+    width: 100px;
+    font-size: 0;
+    background-image: url(../img/icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .circulito {

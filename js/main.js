@@ -4,6 +4,7 @@ const contenedorShows = document.getElementById('shows');
 const modal = document.getElementById('modal');
 const buscador = document.getElementById('buscador');
 
+// Función para obtener los shows desde la API
 async function obtenerShows(url) {
     try {
         const respuesta = await fetch(url);

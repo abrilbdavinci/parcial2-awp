@@ -5,7 +5,7 @@ MATERIA: Aplicaciones Web Progresivas
 TRABAJO PRÁCTICO: Examen Parcial 2
 PROFESOR: Carlos Ferrer
 ALUMNO: Martina Alvarez, Abril Barrientos, Martina Giacomini
-CUATRIMESTRE: 3
+CUATRIMESTRE: 3ero
 COMISIÓN: DWM3AP
 TURNO: Mañana
 FECHA DE ENTREGA: 30/06/2025
