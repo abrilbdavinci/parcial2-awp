@@ -30,7 +30,7 @@ header {
     box-shadow: 0 4px 8px #18181ab0;
 }
 
-header div a#logo {
+a#logo {
     height: 100px;
     width: 100px;
     font-size: 0;
@@ -58,8 +58,8 @@ header div a#logo {
     background-color: green;
 }
 
-.offline{
-    background-color: red !important;
+div.circulito div.offline{
+    background-color: #E40080 !important;
 }
 
 nav ul {

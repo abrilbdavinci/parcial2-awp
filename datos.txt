@@ -9,4 +9,4 @@ CUATRIMESTRE: 3ero
 COMISIÓN: DWM3AP
 TURNO: Mañana
 FECHA DE ENTREGA: 30/06/2025
-URL DEL SITIO:
+URL DEL SITIO: parcial2-awp-albagi.netlify.app

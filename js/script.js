@@ -69,7 +69,6 @@ if(window.Notification && Notification.permission !== 'denied'){
 
 (()=>{
     let statusMenu = document.querySelector('#status-app');
-    let statusPwa = document.querySelector('meta[name=theme-color]');
 
 
     const state = () =>{
@@ -79,7 +78,6 @@ if(window.Notification && Notification.permission !== 'denied'){
         }else{
             console.log(" No hay")
             statusMenu.classList.add('offline');
-            statusPwa.setAttribute('content', '#E40080')
         }
     }
 
