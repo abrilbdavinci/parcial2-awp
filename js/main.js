@@ -6,6 +6,7 @@ const buscador = document.getElementById('buscador');
 
 // Función para obtener los shows desde la API
 async function obtenerShows(url) {
+    //intenta conectar con la api, si no puede, muestra un error
     try {
         const respuesta = await fetch(url);
         if (!respuesta){
@@ -22,7 +23,7 @@ async function obtenerShows(url) {
 }
 
 
-
+//muestra los shows en el html, si no puede, muestra un mensaje de error
 function mostrarShows(data) {
     contenedorShows.innerHTML = '';
 
@@ -33,6 +34,7 @@ function mostrarShows(data) {
         return;
     }
 
+    //por cada show, crea una tarjeta con la información del mismo
     shows.forEach(show => {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'card';
@@ -66,8 +68,9 @@ function mostrarShows(data) {
 }
 
 
-
+// Función para ver los detalles del show en un modal aparte
 async function verDetalle(id) {
+    //intenta conectar con la api, si no puede, muestra un error
     try {
         const respuesta = await fetch(`${API}/${id}`);
         const show = await respuesta.json();
@@ -97,7 +100,6 @@ async function verDetalle(id) {
             </div>
         </div>
         `;
-
 
         // Mostramos el modal
         modal.classList.add('mostrar');
@@ -145,7 +147,7 @@ buscador.addEventListener('change', () => {
     }
 });
 
-// antes de llamar a obtenerShows verificar si hay datos guardadso en localstorage
+// antes de llamar a obtenerShows verificar si hay datos guardados en localstorage (cache)
 const datosGuardados = localStorage.getItem('shows');
 
 if (datosGuardados) {

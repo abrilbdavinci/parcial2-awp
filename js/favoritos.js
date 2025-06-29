@@ -27,9 +27,12 @@ function mostrarFavoritos() {
     });
 }
 
+//busca en el localStorage los favoritos guardados con el indice de la peli elegida
 function eliminarFavorito(indice) {
+    // busca el nro del indice y de ahí borra 1 elemento(osea, una sola peli)
     listaFavoritos.splice(indice, 1);
     localStorage.setItem('favoritos', JSON.stringify(listaFavoritos));
+    //muestra los favoritos actualizados
     mostrarFavoritos();
 }
 
