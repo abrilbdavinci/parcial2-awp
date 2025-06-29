@@ -55,7 +55,7 @@ if(window.Notification && Notification.permission !== 'denied'){
     //crear notificacion
     //dos parametros(tituloNotificacion, objetoJS para el cuerpo de la notifiacion)
     new Notification("Busca SeriesTV", {
-        body: "Encontrar tus series favoritas ahora es más fácil!!",
+        body: "Encontrar tus series favoritas ahora es más fácil!",
         icon: "favicon/android-icon-144x144.png",//como script se ejecuta desde index.html, no se usa ../
         image: "img/img-notification-push.png",
         badge: "favicon/android-icon-144x144.png"
@@ -68,27 +68,29 @@ if(window.Notification && Notification.permission !== 'denied'){
 /* status en linea */
 
 (()=>{
+    //busca el div con el id status-app
     let statusMenu = document.querySelector('#status-app');
 
-
+    //si está online, elimina la clase 'offline' del div
     const state = () =>{
-        if(navigator.online){
+        if(navigator.onLine){
             statusMenu.classList.remove('offline')
-            console.log("hay")
+            statusMenu.style.background = '#37db5b';
+            console.log("hay conexión!!!")
         }else{
-            console.log(" No hay")
+            //si está offline, agrega la clase 'offline' al div
+            console.log(" No hay conexión D:")
             statusMenu.classList.add('offline');
+            statusMenu.style.background = '#E40080';
         }
     }
-
-    if(navigator.online){
+    //si está online llama a la función state de recién par verificar de vuelta el estado de la conexión
+    if(navigator.onLine){
         state()
     }
 
     window.addEventListener("online", state);
-    window.addEventListener("offlne", state)
+    window.addEventListener("offline", state)
 
 })();
-
-
 

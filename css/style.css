@@ -55,11 +55,6 @@ a#logo {
     width: 20px;
     height: 20px;
     border-radius: 50px;
-    background-color: green;
-}
-
-div.circulito div.offline{
-    background-color: #E40080 !important;
 }
 
 nav ul {
