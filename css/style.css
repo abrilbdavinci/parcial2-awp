@@ -57,6 +57,11 @@ a#logo {
     border-radius: 50px;
 }
 
+.navbar-toggler{
+    border: none !important;
+    font-size: 1.5rem;
+}
+
 nav ul {
     list-style: none;
     display: flex;
