@@ -43,7 +43,7 @@ a#logo {
     display: flex;
     color: white;
     align-items: center;
-    margin: auto 0 !important;
+    margin: 50px 0;
 }
 
 .circulito p {
@@ -137,7 +137,7 @@ footer {
 
 main {
     text-align: center;
-    padding: 130px 0;
+    padding: 170px 0;
     max-width: 1720px;
     margin: 0 auto;
 }
@@ -148,7 +148,7 @@ i{
 
 
 #buscador {
-    margin: 20px auto;
+    margin: 0 auto;
     text-align: center;
     width: 70%;
     padding: 0.8rem 0.3rem;
@@ -245,7 +245,7 @@ div.eliminar-favoritos button:first-child{
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
+    z-index: 100000000; 
 }
 
 .modal-content {
@@ -286,13 +286,13 @@ div.eliminar-favoritos button:first-child{
 
 .modal-content button {
     background-color: #E40080;
-    color: #e7f3fa;
+    color: #e7f3fa !important;
     padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 50px;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 .card button{

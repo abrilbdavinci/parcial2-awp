@@ -1,61 +1,66 @@
-//cacheo estatico - precacheo. 
-var cacheName = 'cache';
+const cacheName = 'tvshows-v1';
+const filesToCache = [
+  '/',
+  '/index.html',
+  '/favoritos.html',
+  '/js/main.js',
+  '/js/script.js',
+  '/js/favoritos.js',
+  '/css/style.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css',
+  'favicon/android-icon-144x144.png',
+  'favicon/favicon-32x32.png',
+  'favicon/favicon-96x96.png',
+  'favicon/favicon-16x16.png'
+];
 
-//sw se pone en la carpeta raiz del proyecto para que tenga alcance global
-
-//"self" se refiere al propio sw
-self.addEventListener('activate', function(event){
-    console.log('El SW esta ativado', event)
-})
-
-self.addEventListener('install', function(event){
-
-    self.skipWaiting(); //cada vez que se haga un cambio y se recarga la pagina se vuelva a cargar el ws, asi no hay que limpiar el cache cada vez.
-
-
-    console.log('El SW se instalo', event) //install event
-    //se trabaja con el cache cuando se instala el service worker
-
-
-})
-
-
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-            if (response) {
-                //revisa si el request que se hace en el evento, existe. como es promesa, en caso de que SI exista, la devuelve. La respuesta que estaria devolviendo es
-                // Si existe en caché, lo devuelve
-                return response;
-            }
-    
-            //sino, clona la solicitud: una solicitud es un flujo y se puede consumir solo una vez
-            const requestToCache = event.request.clone();
-    
-            return fetch(requestToCache)
-                .then((response) => {
-                // Si la respuesta no es válida, simplemente la retorna
-                if (!response || response.status !== 200) {
-                    return response;
-                }
-    
-                const responseToCache = response.clone();
-                //cada vez que se usa la respuesta se tiene que clonar. Porque se necesita agregarla a la cache una sola vez. Se usa para la respuesta final.
-
-                //si hubo respuesta del servidor optima, esa respuesta se usa para guardarla en cache.
-    
-                caches.open(cacheName)
-                    .then((cache) => {
-                    cache.put(event.request, responseToCache);
-                    });
-    
-                    // Se devuelve la respuesta original
-                    return response;
-                });
-            })
-    );
+self.addEventListener('install', event => {
+  self.skipWaiting();
+  event.waitUntil(
+    caches.open(cacheName).then(cache => {
+      console.log('archivos cacheados');
+      return cache.addAll(filesToCache);
+    })
+  );
 });
 
+self.addEventListener('activate', event => {
+  console.log('sw activadisimo!!');
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => {
+          if (key !== cacheName) {
+            console.log('borrar cache', key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request)
+        .then(networkResponse => {
+          return caches.open(cacheName).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          return new Response('<p>sin conexión y esto no está en caché.</p>', {
+            headers: { 'Content-Type': 'text/html' }
+          });
+        });
+    })
+  );
+});
 
 

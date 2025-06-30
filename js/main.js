@@ -6,21 +6,22 @@ const buscador = document.getElementById('buscador');
 
 // Función para obtener los shows desde la API
 async function obtenerShows(url) {
-    //intenta conectar con la api, si no puede, muestra un error
     try {
         const respuesta = await fetch(url);
-        if (!respuesta){
-            console.log('Error al conectar con la API');
-        }else{
-            console.log('Conectado a la API correctamente')
-        }
         const datos = await respuesta.json();
+
+        // Guardamos el primer llamado para offline
+        if (!localStorage.getItem('shows')) {
+            localStorage.setItem('shows', JSON.stringify(datos));
+        }
+
         mostrarShows(datos);
     } catch (error) {
-        contenedorShows.innerHTML = '<p class="error"> No se pudo cargar la información. Intenta nuevamente.</p>';
+        contenedorShows.innerHTML = '<p class="error"> No se pudo cargar la información. Intentar nuevamente.</p>';
         console.error('Error:', error)
     }
 }
+
 
 
 //muestra los shows en el html, si no puede, muestra un mensaje de error
@@ -115,29 +116,45 @@ function cerrarModal() {
 }
 
 async function agregarAFavoritos(id) {
-    try {
-        const respuesta = await fetch(`${API}/${id}`);
-        const show = await respuesta.json();
-        
-        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+  try {
+    // Primero intenta buscar en localStorage (modo offline)
+    const datosGuardados = JSON.parse(localStorage.getItem('shows')) || [];
 
-        // Encuentra si el show ya está en favoritos
-        let yaExiste = favoritos.find(item => item.id === show.id);
-
-        // Si no está, se agrega
-        if (!yaExiste) {
-            favoritos.push(show); // Agrega el nuevo show
-            localStorage.setItem('favoritos', JSON.stringify(favoritos)); // Guarda en local storage
-            alert('Show agregado a favoritos');
-        } else {
-            // Si ya estaba, mostramos un mensaje
-            alert('El show ya está en favoritos');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error al agregar a favoritos');
+    // los datos pueden venir como array simple o con objetos tipo { show: {...} }
+    let show = null;
+    if (datosGuardados.length > 0 && datosGuardados[0].show) {
+      show = datosGuardados.find(item => item.show.id === id)?.show;
+    } else {
+      show = datosGuardados.find(item => item.id === id);
     }
+
+    // Si no lo encontró offline, intenta online
+    if (!show) {
+      const respuesta = await fetch(`${API}/${id}`);
+      show = await respuesta.json();
+    }
+
+    if (!show) {
+      alert('No se pudo obtener la información del show.');
+      return;
+    }
+
+    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+    if (!favoritos.find(item => item.id === show.id)) {
+      favoritos.push(show);
+      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+      alert('Show agregado a favoritos');
+    } else {
+      alert('El show ya está en favoritos');
+    }
+
+  } catch (error) {
+    console.error('Error al agregar a favoritos:', error);
+    alert('No se pudo agregar a favoritos. Revisa tu conexión.');
+  }
 }
+
 
 
 buscador.addEventListener('change', () => {
